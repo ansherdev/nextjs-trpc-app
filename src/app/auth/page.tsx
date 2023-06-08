@@ -9,9 +9,9 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  Tabs
+  Tabs,
 } from '@chakra-ui/react';
-import { LoginForm } from 'features';
+import { LoginForm, RegisterForm } from 'features';
 
 export default function AuthPage() {
   return (
@@ -29,7 +29,9 @@ export default function AuthPage() {
               <TabPanel p={0}>
                 <LoginForm />
               </TabPanel>
-              <TabPanel p={0}></TabPanel>
+              <TabPanel p={0}>
+                <RegisterForm />
+              </TabPanel>
             </TabPanels>
           </CardBody>
         </Card>
