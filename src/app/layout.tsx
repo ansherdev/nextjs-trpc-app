@@ -1,3 +1,4 @@
+import { Container } from 'components';
 import { Providers } from './providers';
 
 export const metadata = {
@@ -13,7 +14,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Container minHeight="100vh">
+            {children}
+          </Container>
+        </Providers>
       </body>
     </html>
   );
