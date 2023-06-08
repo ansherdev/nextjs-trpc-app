@@ -10,11 +10,8 @@ import {
   Tabs,
 } from '@chakra-ui/react';
 import { LoginForm, RegisterForm } from 'features';
-import { trpc } from 'utils';
 
 export default function AuthPage() {
-  const hello = trpc.hello.useQuery({ text: 'client' });
-
   return (
     <Center height="100vh">
       <Tabs variant="soft-rounded">
