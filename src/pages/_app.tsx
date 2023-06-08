@@ -1,10 +1,13 @@
 import { RootLayout } from 'layouts';
 import { AppProps } from 'next/app';
+import { trpc } from 'utils';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RootLayout>
       <Component {...pageProps} />
     </RootLayout>
   );
 }
+
+export default trpc.withTRPC(MyApp);

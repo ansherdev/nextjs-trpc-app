@@ -1,7 +1,6 @@
-import { Container } from 'components';
 import { theme } from 'theme';
 import { CacheProvider } from '@chakra-ui/next-js';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Container } from '@chakra-ui/react';
 
 interface RootLayoutProps {
   children: React.ReactNode;

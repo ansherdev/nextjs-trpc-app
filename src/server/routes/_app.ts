@@ -1,7 +1,7 @@
 import z from 'zod';
-import { publicProcedure, router } from 'server/trpc';
+import { publicProcedure, router } from '../trpc';
 
-const appRouter = router({
+export const appRouter = router({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .output(z.object({ greeting: z.string() }))

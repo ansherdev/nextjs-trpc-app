@@ -1,4 +1,5 @@
-import { Container } from 'components';
+"use client"
+import { Container } from '@chakra-ui/react';
 import { Providers } from './providers';
 
 export const metadata = {
