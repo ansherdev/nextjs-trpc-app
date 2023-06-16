@@ -29,7 +29,27 @@ services:
     volumes:
       - redis:/data
 
+  next-app:
+    container_name: next-app
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./.env
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - general_network
+
 volumes:
   postgres-db:
   redis:
   pgadmin:
+
+networks:
+  general_network:
+    external: true
