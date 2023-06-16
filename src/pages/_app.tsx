@@ -2,7 +2,7 @@ import { RootLayout } from 'layouts';
 import { AppProps } from 'next/app';
 import { trpc } from 'utils';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <RootLayout>
       <Component {...pageProps} />
@@ -10,4 +10,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default trpc.withTRPC(MyApp);
+export default trpc.withTRPC(App);
