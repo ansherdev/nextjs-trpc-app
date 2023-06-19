@@ -2,8 +2,8 @@ import { Button, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, FormPasswordInput } from 'components';
 import { useForm } from 'react-hook-form';
-import { RegisterFormData } from 'types';
 import { z } from 'zod';
+import { RegisterFormData } from './types';
 
 const registerFormSchema = z.object({
   name: z.string(),

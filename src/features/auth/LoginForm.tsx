@@ -2,8 +2,8 @@ import { Button, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, FormPasswordInput } from 'components';
 import { useForm } from 'react-hook-form';
-import { LoginFormData } from 'types';
 import { z } from 'zod';
+import { LoginFormData } from './types';
 
 const loginFormSchema = z.object({
   email: z.string().email(),
