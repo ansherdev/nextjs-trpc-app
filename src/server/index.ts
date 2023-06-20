@@ -1,4 +1,4 @@
 export { createContext } from './context';
-export { appRouter } from './routes/root';
-export type { AppRouter } from './routes/root';
+export { appRouter } from './routes';
+export type { AppRouter } from './routes';
 

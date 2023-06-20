@@ -2,6 +2,7 @@ services:
   postgres:
     image: postgres
     container_name: postgres
+    hostname: postgres
     ports:
       - '5432:5432'
     restart: always
@@ -9,6 +10,8 @@ services:
       - ./.env
     volumes:
       - postgres-db:/var/lib/postgresql/data
+    networks:
+      - auth-next-trpc_default
 
   pgadmin:
     image: dpage/pgadmin4

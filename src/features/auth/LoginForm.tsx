@@ -2,22 +2,22 @@ import { Button, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, FormPasswordInput } from 'components';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { LoginFormData } from './types';
-
-const loginFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
+import { ILoginInput, loginSchema } from 'schemas';
+import { trpc } from 'utils';
 
 export const LoginForm = () => {
-  const { register } = useForm<LoginFormData>({
-    defaultValues: { email: '', password: '' },
-    resolver: zodResolver(loginFormSchema),
+  const { mutate: loginUser } = trpc.login.useMutation();
+
+  const { register, handleSubmit } = useForm<ILoginInput>({
+    resolver: zodResolver(loginSchema),
   });
 
+  const onSubmit = (input: ILoginInput) => {
+    loginUser(input);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={5}>
         <FormInput
           inputProps={{
@@ -34,7 +34,7 @@ export const LoginForm = () => {
             ...register('password'),
           }}
         />
-        <Button>Login</Button>
+        <Button type="submit">Login</Button>
       </Stack>
     </form>
   );

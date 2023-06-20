@@ -27,7 +27,7 @@ COPY tsconfig.json .
 # Start Next.js in development mode based on the preferred package manager
 
 CMD \
-  yarn prisma generate && \
+  yarn prisma generate; \
   if [ -f yarn.lock ]; then yarn dev; \
   elif [ -f package-lock.json ]; then npm run dev; \
   elif [ -f pnpm-lock.yaml ]; then pnpm dev; \
