@@ -6,7 +6,7 @@ import { IRegisterInput, registerSchema } from 'schemas';
 import { trpc } from 'utils';
 
 export const RegisterForm = () => {
-  const { mutate: registerUser } = trpc.register.useMutation();
+  const { mutate: registerUser, data } = trpc.register.useMutation();
 
   const { register, handleSubmit } = useForm<IRegisterInput>({
     resolver: zodResolver(registerSchema),
@@ -23,6 +23,7 @@ export const RegisterForm = () => {
           inputProps={{
             type: 'text',
             placeholder: 'Name',
+            autoComplete: 'username',
             ...register('name'),
           }}
         />
@@ -30,6 +31,7 @@ export const RegisterForm = () => {
           inputProps={{
             type: 'email',
             placeholder: 'E-mail',
+            autoComplete: 'email',
             ...register('email'),
           }}
         />

@@ -1,6 +1,5 @@
-import { theme } from 'theme';
-import { CacheProvider } from '@chakra-ui/next-js';
 import { ChakraProvider, Container } from '@chakra-ui/react';
+import { theme } from 'theme';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -8,10 +7,8 @@ interface RootLayoutProps {
 
 export const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <CacheProvider>
       <ChakraProvider theme={theme}>
         <Container minHeight="100vh">{children}</Container>
       </ChakraProvider>
-    </CacheProvider>
   );
 };
