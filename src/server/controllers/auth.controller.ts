@@ -1,7 +1,24 @@
 import { TRPCError } from '@trpc/server';
 import bcrypt from 'bcrypt';
+import { OptionsType } from 'cookies-next/lib/types';
 import { ILoginInput, IRegisterInput } from 'schemas';
+import { serverConfig } from 'server/config/default';
 import { userService } from 'server/services';
+
+const cookieOptions: OptionsType = {
+  httpOnly: true,
+  sameSite: 'lax',
+};
+
+const accessTokenCookieOptions: OptionsType = {
+  ...cookieOptions,
+  expires: new Date(Date.now() + serverConfig.accessTokenExpiresIn * 60 * 1000),
+};
+
+const refreshTokenCookieOptions: OptionsType = {
+  ...cookieOptions,
+  expires: new Date(Date.now() + serverConfig.refreshTokenExpiresIn * 60 * 1000),
+};
 
 export const registerHandler = async (input: IRegisterInput) => {
   try {
