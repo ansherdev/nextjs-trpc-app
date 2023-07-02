@@ -3,10 +3,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, FormPasswordInput } from 'components';
 import { useForm } from 'react-hook-form';
 import { IRegisterInput, registerSchema } from 'schemas';
-import { trpc } from 'utils';
+import { useRegisterMutation } from './hooks';
 
 export const RegisterForm = () => {
-  const { mutate: registerUser, data } = trpc.register.useMutation();
+  const { mutate: registerUser } = useRegisterMutation();
 
   const { register, handleSubmit } = useForm<IRegisterInput>({
     resolver: zodResolver(registerSchema),

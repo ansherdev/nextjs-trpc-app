@@ -13,7 +13,6 @@ export const registerHandler = async (input: IRegisterInput) => {
       password: hashedPassword,
     });
 
-
     return { status: 'success', data: { user } };
   } catch (error: any) {
     if (error.code === 'P2002') {
