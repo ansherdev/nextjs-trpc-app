@@ -9,5 +9,5 @@ export const authRouter = router({
 
   login: publicProcedure
     .input(loginSchema)
-    .mutation(({ input }) => loginHandler(input)),
+    .mutation(({ input, ctx }) => loginHandler(input, ctx)),
 });

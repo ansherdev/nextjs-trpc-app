@@ -14,7 +14,7 @@ import { LoginForm, RegisterForm } from 'features';
 export default function AuthPage() {
   return (
     <Center height="100vh">
-      <Tabs variant="soft-rounded" defaultIndex={1}>
+      <Tabs variant="soft-rounded">
         <Card p={5} width="md">
           <CardHeader>
             <TabList justifyContent="center">
