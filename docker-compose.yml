@@ -30,14 +30,16 @@ services:
     ports:
       - 6379:6379
       - 8001:8001
-    environment:
-      - REDIS_ARGS=--save 20 1
+    env_file:
+      - ./.env
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
     volumes:
-      - ./data:/data
+      - redis:/data
+    depends_on:
+      - next-app
 
   next-app:
     container_name: next-app

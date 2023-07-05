@@ -3,6 +3,7 @@ import { User } from '@prisma/client';
 import { serverConfig } from 'server/config/default';
 import { TokenKey } from 'server/config/types';
 import { prisma } from 'server/prisma';
+import { redisClient } from 'server/redis';
 import { signJwt } from 'server/utils';
 
 export const createUser = async (input: Prisma.UserCreateInput) => {
@@ -20,17 +21,19 @@ export const findUser = async (
   return (await prisma.user.findFirst({ where, select })) as User;
 };
 
-export const signTokens = (input: Prisma.UserCreateInput) => {
-  const accessToken = signJwt(input, TokenKey.AccessTokenPrivateKey, {
+export const signTokens = (user: User) => {
+  redisClient.set(`${user.id}`, JSON.stringify(user));
+
+  const accessToken = signJwt(user, TokenKey.AccessTokenPrivateKey, {
     algorithm: 'RS512',
     expiresIn: `${serverConfig.accessTokenExpiresIn}m`,
   });
 
-  const refreshToken = signJwt(input, TokenKey.RefreshTokenPrivateKey, {
+  const refreshToken = signJwt(user, TokenKey.RefreshTokenPrivateKey, {
     algorithm: 'RS512',
     expiresIn: `${serverConfig.refreshTokenExpiresIn}m`,
   });
 
   return { accessToken, refreshToken };
 };
-1
+1;
