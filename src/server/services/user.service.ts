@@ -26,11 +26,15 @@ export const signTokens = (user: User) => {
     expiresIn: `${serverConfig.accessTokenExpiresIn}m`,
   });
 
-  const refreshToken = signJwt(user, TokenKey.RefreshTokenPrivateKey, {
-    algorithm: 'RS512',
-    expiresIn: `${serverConfig.refreshTokenExpiresIn}m`,
-  });
+  const refreshToken = signJwt(
+    { sub: user.id },
+    TokenKey.RefreshTokenPrivateKey,
+    {
+      algorithm: 'RS512',
+      expiresIn: `${serverConfig.refreshTokenExpiresIn}m`,
+    }
+  );
 
   return { accessToken, refreshToken };
 };
-1;
+
