@@ -5,9 +5,7 @@ import { OptionsType } from 'cookies-next/lib/types';
 import { ILoginInput, IRegisterInput } from 'schemas';
 import { serverConfig } from 'server/config/default';
 import { Context } from 'server/context';
-import { redisClient } from 'server/redis';
 import { userService } from 'server/services';
-import { findUser, signTokens } from 'server/services/user.service';
 
 const cookieOptions: OptionsType = {
   httpOnly: true,
@@ -78,13 +76,6 @@ export const loginHandler = async (
       req,
       res,
       ...refreshTokenCookieOptions,
-    });
-
-    setCookie('logged_in', 'true', {
-      req,
-      res,
-      ...accessTokenCookieOptions,
-      httpOnly: false,
     });
 
     return {
