@@ -3,10 +3,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, FormPasswordInput } from 'components';
 import { useForm } from 'react-hook-form';
 import { ILoginInput, loginSchema } from 'schemas';
-import { trpc } from 'utils';
+import { useLoginMutation } from './hooks';
 
 export const LoginForm = () => {
-  const { mutate: loginUser } = trpc.login.useMutation();
+  const { mutate: loginUser } = useLoginMutation();
 
   const { register, handleSubmit } = useForm<ILoginInput>({
     resolver: zodResolver(loginSchema),
