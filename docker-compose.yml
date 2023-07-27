@@ -1,8 +1,12 @@
+networks:
+  auth-next-trpc_default:
+    driver: bridge
+    external: true
+
 services:
   postgres:
     image: postgres
     container_name: postgres
-    hostname: postgres
     ports:
       - '5432:5432'
     restart: always
@@ -43,7 +47,3 @@ services:
 volumes:
   postgres-db:
   pgadmin:
-
-networks:
-  auth-next-trpc_default:
-    external: true
